@@ -18,4 +18,5 @@ type Query {
   """Devuelve un número hasta el rango o por defecto 10."""
   randomFromZeroTo(to: Int): Int!
   todos: [Todo!]!
+  todo(id: Int!): Todo!
 }
