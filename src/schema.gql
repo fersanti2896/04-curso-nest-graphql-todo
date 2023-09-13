@@ -8,6 +8,14 @@ type Todo {
   done: Boolean!
 }
 
+"""Tarea agregaciones"""
+type AggregationsType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+  totalTodosCompleted: Int! @deprecated(reason: "No usar totalTodosCompleted - Obsoleto")
+}
+
 type Query {
   """Hola mundo es lo que retorna."""
   hello: String!
@@ -17,8 +25,15 @@ type Query {
 
   """Devuelve un número hasta el rango o por defecto 10."""
   randomFromZeroTo(to: Int): Int!
-  todos: [Todo!]!
+  todos(
+    """Estatus de la tarea."""
+    status: Boolean!
+  ): [Todo!]!
   todo(id: Int!): Todo!
+  allTodos: Int!
+  completedTodos: Int!
+  pendingTodos: Int!
+  aggreation: AggregationsType!
 }
 
 type Mutation {
